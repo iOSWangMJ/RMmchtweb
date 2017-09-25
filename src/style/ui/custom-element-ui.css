@@ -1,0 +1,359 @@
+/**
+ * 根据 ui 设计 ，需要修改element-ui 的一些样式，需要重写 {el-dialog}
+ *
+ * 必要说明 ：
+ *          每个组件需要 根元素 添加 .custom_elementui 类 ，用于重载 elementui 的样式
+ */
+
+
+/*el- dialog 的样式 重写*/
+
+.custom_elementui .el-dialog {
+    border-radius: 10px;
+    /*left: 58%;*/
+}
+
+.custom_elementui .el-dialog__header {
+    padding: 0;
+}
+
+.custom_elementui .el-dialog__body {
+    padding: 22px 20px;
+}
+
+.custom_elementui .v-modal {
+    /*position: fixed;
+    left: 255px;
+    top: 85px;
+    width: 100%;
+    bottom: 0;*/
+    /*background-color: rgba(214,214,214,0.5);*/
+    /*height: 933px;*/
+    opacity: .2;
+}
+
+
+/**
+ * [width 事件申请]
+ * @type {[type]}
+ */
+
+.custom-dialog-eventinfo-declare {
+    width: 410px;
+}
+
+
+/**
+ * [width 事件详情]
+ * @type {[type]}
+ */
+
+.custom-dialog-eventinfo-detail {
+    width: 498px;
+}
+
+
+/**
+ * 商户详情
+*/
+
+.custom-dialog-store-detail {
+    width: 393px;
+}
+
+
+/*
+签约产品信息
+ */
+
+.custom-dialog-contract-sign {
+    width: 737px;
+}
+
+.custom-dialog-store-trade-detail {
+    width: 498px;
+}
+
+.custom-dialog-settlment-detail {
+
+    width: 820px;
+}
+
+.custom-dialog-user-pwd {
+    width: 464px;
+}
+
+.custom-dialog-commerce-qr {
+    width: 363px;
+}
+
+
+/*element table 表格样式重写*/
+
+.custom_elementui .el-table {
+    font-size: 14px;
+    color: #666;
+}
+
+.custom_elementui .el-table th>.cell {
+    line-height: 43px;
+}
+
+.custom_elementui thead th>.cell {
+    color: #333;
+    /*font-size: 16px;*/
+    text-align: center;
+    padding: 0 10px;
+    height: 43px;
+    line-height: 43px;
+    background-color:rgba(239,237,237,1);
+
+}
+
+.custom_elementui tbody .cell {
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+    padding: 0 10px;
+    /*text-overflow: ellipsis;*/
+    /*height:51px;*/
+    /*line-height: 51px;*/
+}
+
+.custom_elementui .el-dialog .el-table th>.cell {
+    /*line-height: 51px;*/
+}
+
+.custom_elementui .el-dialog thead th>.cell {
+    color: #333;
+    /*font-size: 14px;*/
+    text-align: center;
+    padding: 0 10px;
+    height: 35px;
+    line-height: 35px;
+    background-color:rgba(239,237,237,1);
+}
+
+.custom_elementui .el-dialog tbody .cell {
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+    height: 37px;
+    padding: 0 10px;
+    /*text-overflow: ellipsis;*/
+    /*height:51px;*/
+    line-height: 35px;
+}
+
+
+/* form 表单*/
+
+.custom_elementui .el-input__inner {
+    height: 34px;
+    border-radius: 2px;
+}
+
+
+/* TODO: wwq 的页面公共样式 有待整合 */
+
+.custom_elementui .page-title {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 50px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.custom_elementui .info-title {
+    font-size: 16px;
+    padding: 20px 0 10px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.custom_elementui .info-title:before {
+    content: '';
+    border-left: solid 6px #009C42;
+    margin-left: 40px;
+    margin-right: 6px;
+}
+
+.custom_elementui .info-footer {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.custom_elementui .info-footer .el-button {
+    min-width: 120px;
+    min-height: 34px;
+    border-radius: 2px;
+}
+
+.custom_elementui .button-background {
+    background-color: #009C42;
+    outline: none;
+    color: white;
+}
+
+.custom_elementui .button-return {
+    background-color: #999;
+    outline: none;
+    color: white;
+}
+
+/**
+ * yanjingxiao用户管理页面  交易信息  交易统计，根据 ui 设计 ，需要修改element-ui 的一些样式
+ */
+
+
+/*去掉所有按钮的边框*/
+.el-button--primary{
+    border:none;
+}
+
+/*用户管理页面*/
+.userDialog .el-form-item__label{
+    padding-right:0;
+    color:#333;
+    margin-bottom: 0;
+}
+
+.userDialog .el-checkbox-group{
+    max-height: 80px;
+    overflow-y:scroll;
+}
+
+.userDialog .el-checkbox-group label{
+    width:120px;
+    margin:0px;
+    padding-right:6px;
+}
+
+.userDialog .el-input__inner{
+    border-radius: 2px;
+    height:34px;
+    font-size: 14px;
+}
+
+.addPhoneTest .el-input-group{
+    width:296px;
+    height: 34px;
+    box-sizing: border-box;
+}
+.addPhoneTest .el-form-item__label{
+    padding-right:16px;
+    color:#333;
+    margin-bottom: 0;
+}
+
+.addPhoneTest .el-input-group__append{
+    color:#fff;
+    background-color:#009C42;
+    /*margin-left:20px;*/
+}
+
+.optionCon .el-input__inner{
+    width:92px;
+    height:31px;
+    border-radius: 100px ;
+    font-size:14px;
+    background-color:rgba(219,216,216,1);
+    border:none;
+}
+
+.userDialog .el-checkbox__input.is-checked .el-checkbox__inner {
+    background-color: rgb(0, 156, 66);
+    border-color: rgb(0, 156, 66);
+}
+
+/*交易信息页面*/
+.queryForm .el-form-item{
+    margin-bottom: 20px;
+}
+.queryForm .el-form-item__label{
+    padding-right:0;
+    margin-bottom: 0;
+    font-size:14px;
+    color:#333;
+}
+.queryForm .el-form-item__content{
+    width:200px;
+}
+
+.queryForm .el-input__inner{
+    height:34px;
+}
+
+.queryForm  .el-date-editor--daterange.el-input{
+    width:285px;
+}
+
+.queryForm .btnContainer .el-form-item__content{
+    width:285px;
+}
+.queryForm .el-input-group__append{
+    font-size:12px;
+}
+
+/*element-ui table*/
+.tableStyle thead th>.cell{
+    text-align: center;
+    height:43px;
+    line-height:43px;
+    font-size:14px;
+    color:#333;
+    background-color:rgba(239,237,237,1);
+}
+
+.tableStyle tbody .cell{
+    text-align: center;
+    line-height:35px;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.tableStyle tbody tr td:nth-child(5){
+    color:#1094F5;
+}
+
+.tableStyle  .el-table th, .el-table td{
+    height:35px;
+}
+
+.tableStyle tbody .cell .el-tag{
+    background-color: transparent;
+    color:#666;
+    font-size:12px;
+    display: inline;
+    padding: 0 0px;
+}
+
+.tableStyle .el-button--text{
+    color:#333;
+}
+.tableStyle .is-disabled{
+    color: rgb(191, 203, 217);
+}
+
+
+/*
+弹出框退款*/
+.transRefundStyle .el-form-item__label{
+    font-size:14px;
+    color:#333;
+    margin:0;
+}
+
+.transRefundStyle .el-input__inner{
+    border-radius: 2px;
+    height:34px;
+    font-size: 14px;
+}
+
+/*
+交易统计页面*/
+.optionCon .el-input .el-input__icon{
+    color:#333;
+}

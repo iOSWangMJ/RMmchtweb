@@ -1,0 +1,428 @@
+<template>
+    <el-menu :default-active="defaultActive" theme="dark" class="nav-list">
+        <el-submenu v-for="menu in (getSystemUserInfo.userType==='0'?managerMenus:staffMenus)" :key="menu.menuId" :index="menu.menuId">
+            <template slot="title">{{menu.menuName}}</template>
+            <el-submenu class="sub-menu" v-for="subMenu in menu.childrenList" :key="subMenu.menuId" :index="subMenu.menuId">
+                <template slot="title">{{subMenu.menuName}}</template>
+                <el-menu-item :class="functionMenu.menuId" @click="handleClickFunctionMenu(functionMenu)" v-for="functionMenu in subMenu.childrenList" class="function-menu" :key="functionMenu.menuId" :index="functionMenu.menuId">
+                    <img width="12" class="icon-img" v-if="functionMenu.iconClass" :src="'../../../../../static/'+functionMenu.iconClass" alt="">{{functionMenu.menuName}}</el-menu-item>
+            </el-submenu>
+        </el-submenu>
+    </el-menu>
+</template>
+
+<style lang="scss">
+    $title-color: #DDDEE1;
+    $item-color:#bdbdbd;
+    .nav-list .sub-menu .function-menu.is-active{
+        color: #fff;
+        background: #454E52;
+    }
+    .nav-list .sub-menu .function-menu{
+        color: $item-color;
+    }
+    .nav-list .icon-img{
+        margin-right: 14px;
+    }
+    .nav-list>.el-submenu>.el-submenu__title{
+        height: 50px;
+        line-height: 50px;
+        padding-left: 36px !important;
+    }
+    .sub-menu .el-submenu__title{
+        height: 42px;
+        line-height: 42px;
+        padding-left: 54px !important;
+    }
+    .nav-list .sub-menu .function-menu{
+        font-size: 0.85em;
+        padding-left: 54px !important;
+        height: 32px;
+        line-height: 32px;
+    }
+    .nav-list{
+        font-size: 1em;
+    }
+    .nav-list,.el-submenu,.el-menu-item,.nav-list.el-menu--dark{
+        width: 200px;
+        background: #253238;
+    }
+</style>
+
+<script>
+    import {mapGetters} from 'vuex'
+    export default{
+        name:'mcht-menu',
+        data(){
+            return{
+              defaultActive:'1021',
+              managerMenus:[
+                  {
+                      "menuId":"1000",
+                      "menuName":"商户中心",
+                      "groupFlag":"01",
+                      "iconClass":"",
+                      "pMenuId":"",
+                      "path":"",
+                      "compName":"",
+                      "authList":[],
+                      "childrenList":[
+                          {
+                              "menuId":"1010",
+                              "menuName":"商户服务",
+                              "groupFlag":"01",
+                              "iconClass":"",
+                              "pMenuId":"1000",
+                              "path":"",
+                              "compName":"",
+                              "authList":[],
+                              "childrenList":[
+                                  {
+                                      "menuId":"1011",
+                                      "menuName":"商户信息",
+                                      "groupFlag":"02",
+                                      "iconClass":"Merchant@2x.png",
+                                      "pMenuId":"1010",
+                                      "path":"/mchtsCenter/commerceinfo",
+                                      "compName":"CommerceInfo",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  },
+                                  {
+                                      "menuId":"1012",
+                                      "menuName":"签约信息",
+                                      "groupFlag":"02",
+                                      "iconClass":"Sign@2x.png",
+                                      "pMenuId":"1010",
+                                      "path":"/mchtsCenter/contract",
+                                      "compName":"Contract",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  },
+                                  {
+                                      "menuId":"1013",
+                                      "menuName":"门店信息",
+                                      "groupFlag":"02",
+                                      "iconClass":"store2@2x.png",
+                                      "pMenuId":"1010",
+                                      "path":"/mchtsCenter/storeinfo",
+                                      "compName":"StoreInfo",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  }
+                              ]
+                          },
+                          {
+                              "menuId":"1020",
+                              "menuName":"用户服务",
+                              "groupFlag":"01",
+                              "iconClass":"",
+                              "pMenuId":"1000",
+                              "path":"",
+                              "compName":"",
+                              "authList":[],
+                              "childrenList":[
+                                  {
+                                      "menuId":"1021",
+                                      "menuName":"用户登录信息",
+                                      "groupFlag":"02",
+                                      "iconClass":"3@2x.png",
+                                      "pMenuId":"1020",
+                                      "path":"/mchtsCenter/userpwd",
+                                      "compName":"UserPwd",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  },
+                                  {
+                                      "menuId":"1022",
+                                      "menuName":"店员管理",
+                                      "groupFlag":"02",
+                                      "iconClass":"dianyuan@2x.png",
+                                      "pMenuId":"1020",
+                                      "path":"/mchtsCenter/usermanage",
+                                      "compName":"MchtsCenterUserManage",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "menuId":"2000",
+                      "menuName":"交易中心",
+                      "groupFlag":"01",
+                      "iconClass":"",
+                      "pMenuId":"",
+                      "path":"",
+                      "compName":"",
+                      "authList":[],
+                      "childrenList":[
+                          {
+                              "menuId":"2010",
+                              "menuName":"交易服务",
+                              "groupFlag":"01",
+                              "iconClass":"",
+                              "pMenuId":"2000",
+                              "path":"",
+                              "compName":"",
+                              "authList":[],
+                              "childrenList":[
+                                  {
+                                      "menuId":"2011",
+                                      "menuName":"交易统计",
+                                      "groupFlag":"02",
+                                      "iconClass":"jiaoyi3@2x.png",
+                                      "pMenuId":"2010",
+                                      "path":"/transCenter/transstatistics",
+                                      "compName":"TransCenterTransStatistics",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  },
+                                  {
+                                      "menuId":"2012",
+                                      "menuName":"门店交易统计",
+                                      "groupFlag":"02",
+                                      "iconClass":"mendiantongji@2x.png",
+                                      "pMenuId":"2010",
+                                      "path":"/transCenter/storetradestatistic",
+                                      "compName":"StoreTradeStatistic",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  },
+                                  {
+                                      "menuId":"2013",
+                                      "menuName":"交易信息",
+                                      "groupFlag":"02",
+                                      "iconClass":"jiaoyi @2x.png",
+                                      "pMenuId":"2010",
+                                      "path":"/transCenter/transinfo",
+                                      "compName":"TransCenterTransInfo",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  },
+                                  {
+                                      "menuId":"2014",
+                                      "menuName":"门店交易信息",
+                                      "groupFlag":"02",
+                                      "iconClass":"mendianjiaoyi@2x.png",
+                                      "pMenuId":"2010",
+                                      "path":"/transCenter/storetradeinfo",
+                                      "compName":"StoreTradeInfo",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  }
+                              ]
+                          },
+                          {
+                              "menuId":"2020",
+                              "menuName":"账单服务",
+                              "groupFlag":"01",
+                              "iconClass":"",
+                              "pMenuId":"2000",
+                              "path":"",
+                              "compName":"",
+                              "authList":[],
+                              "childrenList":[
+                                  {
+                                      "menuId":"2021",
+                                      "menuName":"手续费查询",
+                                      "groupFlag":"02",
+                                      "iconClass":"shouxufei@2x.png",
+                                      "pMenuId":"2020",
+                                      "path":"/transCenter/settlement",
+                                      "compName":"Settlement",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "menuId":"3000",
+                      "menuName":"服务中心",
+                      "groupFlag":"01",
+                      "iconClass":"",
+                      "pMenuId":"",
+                      "path":"",
+                      "compName":"",
+                      "authList":[],
+                      "childrenList":[
+                          {
+                              "menuId":"3010",
+                              "menuName":"运营服务",
+                              "groupFlag":"01",
+                              "iconClass":"",
+                              "pMenuId":"3000",
+                              "path":"",
+                              "compName":"",
+                              "authList":[],
+                              "childrenList":[
+                                  {
+                                      "menuId":"3011",
+                                      "menuName":"事件申报",
+                                      "groupFlag":"02",
+                                      "iconClass":"shenbao@2x.png",
+                                      "pMenuId":"3010",
+                                      "path":"/serviceCenter/eventinfo",
+                                      "compName":"EventInfo",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  },
+                                  {
+                                      "menuId":"3012",
+                                      "menuName":"物料模板",
+                                      "groupFlag":"02",
+                                      "iconClass":"wuliao@2x.png",
+                                      "pMenuId":"1010",
+                                      "path":"/serviceCenter/materialtemplate",
+                                      "compName":"MaterialTemplate",
+                                      "authList":[],
+                                      "childrenList":[]
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              ],
+              staffMenus:[
+                  {
+                        "menuId":"1000",
+                        "menuName":"商户中心",
+                        "groupFlag":"01",
+                        "iconClass":"",
+                        "pMenuId":"",
+                        "path":"",
+                        "compName":"",
+                        "authList":[],
+                        "childrenList":[
+                            {
+                                "menuId":"1020",
+                                "menuName":"用户服务",
+                                "groupFlag":"01",
+                                "iconClass":"",
+                                "pMenuId":"1000",
+                                "path":"",
+                                "compName":"",
+                                "authList":[],
+                                "childrenList":[
+                                    {
+                                        "menuId":"1021",
+                                        "menuName":"用户登录信息",
+                                        "groupFlag":"02",
+                                        "iconClass":"3@2x.png",
+                                        "pMenuId":"1020",
+                                        "path":"/mchtsCenter/userpwd",
+                                        "compName":"UserPwd",
+                                        "authList":[],
+                                        "childrenList":[]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                  {
+                        "menuId":"2000",
+                        "menuName":"交易中心",
+                        "groupFlag":"01",
+                        "iconClass":"",
+                        "pMenuId":"",
+                        "path":"",
+                        "compName":"",
+                        "authList":[],
+                        "childrenList":[
+                            {
+                                "menuId":"2010",
+                                "menuName":"交易服务",
+                                "groupFlag":"01",
+                                "iconClass":"",
+                                "pMenuId":"2000",
+                                "path":"",
+                                "compName":"",
+                                "authList":[],
+                                "childrenList":[
+                                    {
+                                        "menuId":"2011",
+                                        "menuName":"交易统计",
+                                        "groupFlag":"02",
+                                        "iconClass":"jiaoyi3@2x.png",
+                                        "pMenuId":"2010",
+                                        "path":"/transCenter/transstatistics",
+                                        "compName":"TransCenterTransStatistics",
+                                        "authList":[],
+                                        "childrenList":[]
+                                    },
+                                    {
+                                        "menuId":"2013",
+                                        "menuName":"交易信息",
+                                        "groupFlag":"02",
+                                        "iconClass":"jiaoyi @2x.png",
+                                        "pMenuId":"2010",
+                                        "path":"/transCenter/transinfo",
+                                        "compName":"TransCenterTransInfo",
+                                        "authList":[],
+                                        "childrenList":[]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                  {
+                        "menuId":"3000",
+                        "menuName":"服务中心",
+                        "groupFlag":"01",
+                        "iconClass":"",
+                        "pMenuId":"",
+                        "path":"",
+                        "compName":"",
+                        "authList":[],
+                        "childrenList":[
+                            {
+                                "menuId":"3010",
+                                "menuName":"运营服务",
+                                "groupFlag":"01",
+                                "iconClass":"",
+                                "pMenuId":"3000",
+                                "path":"",
+                                "compName":"",
+                                "authList":[],
+                                "childrenList":[
+                                    {
+                                        "menuId":"3012",
+                                        "menuName":"物料模板",
+                                        "groupFlag":"02",
+                                        "iconClass":"wuliao@2x.png",
+                                        "pMenuId":"1010",
+                                        "path":"/serviceCenter/materialtemplate",
+                                        "compName":"MaterialTemplate",
+                                        "authList":[],
+                                        "childrenList":[]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+              ],
+            }
+        },
+        methods:{
+            handleClickFunctionMenu(menu){
+                $('.is-active').removeClass('is-active');
+                $('.'+menu.menuId).addClass('is-active');
+                this.$emit('clickMenu',menu);
+            },
+            handleResetActiveMenu(){
+              if (!$('.1021').hasClass('is-active')){
+                  $('.is-active').removeClass('is-active');
+                  $('.1021').addClass('is-active')
+              }
+            }
+        },
+        computed: {
+            ...mapGetters({
+                getSystemUserInfo:'getSystemUserInfo'
+            })
+        },
+    }
+</script>

@@ -1,0 +1,8 @@
+{
+    "id": "system_example",
+    "respCode": "0000",
+    "respMsg": "成功",
+    "authed": [
+        "query"
+    ]
+}

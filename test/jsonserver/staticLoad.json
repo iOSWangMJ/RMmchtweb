@@ -1,0 +1,88 @@
+{
+    "static": [
+    { "id": "00001", 
+      "respCode":"0000",
+      "respMsg":"成功",
+      "data": [
+         {
+            "value": "value1",
+            "label": "选项1"
+        }, {
+            "value": "value2",
+            "label": "选项2"
+        }
+    ]
+    },
+    { "id": "00002", 
+      "respCode":"0000",
+      "respMsg":"成功",
+      "data": [
+         {
+            "value": "value22",
+            "label": "选项12"
+        }, {
+            "value": "value2",
+            "label": "选项22"
+        }
+    ]
+    }
+  ],
+  "button_auth": [
+    
+        { "id": "system_example", 
+      "respCode":"0000",
+      "respMsg":"成功",
+      "authed": [
+         "query"
+      ]
+    }
+    
+    
+  ],
+  "system": [
+    { "id": "log_check",  "respCode":"0000",
+      "respMsg":"成功" },
+      { "id": "notify",  "respCode":"0000",
+      "respMsg":"成功" ,"notifies":[
+          {
+            "id":"00001",
+            "type":"action",
+            "subType":"unlockAll",
+            "detail":{
+              "lockDuration":0
+            }
+            
+          },
+          {
+            "id":"00002",
+            "type":"text",
+            "subType":"static",
+             "detail":
+             {
+              
+              "date":"2016-11-21",
+              "time":"15:50",
+              "titile":"系统通知",
+              "level":"一般",
+              "info":"将与今天23点进行系统维护，届时本系统将无法登陆，预计结束时间为第二天凌晨3点"
+              }
+
+          },
+          {
+            "id":"00003",
+            "type":"text",
+            "subType":"static",
+             "detail":{
+              "date":"2016-11-21",
+              "time":"15:50",
+              "titile":"操作培训",
+              "level":"重要",
+              "info":"3月16日下午在大会议室进行后管平台操作培训"
+            }
+
+          }
+      ]
+      }
+  ],
+  "profile": { "name": "typicode" }
+}
